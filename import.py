@@ -1,4 +1,3 @@
-import collections
 import sqlite3
 import sys
 from pymongo import MongoClient
