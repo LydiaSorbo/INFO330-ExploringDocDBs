@@ -1,3 +1,4 @@
+import collections
 import sqlite3
 import sys
 from pymongo import MongoClient
@@ -45,6 +46,10 @@ try:
         }
 
         pokemonColl.update_one({"pokedex_number": pokedex_number}, {"$set": pokemon}, upsert=True)
+
+    print("Total number of documents in the collection:", pokemonColl.count_documents({}))
+    for doc in pokemonColl.find():
+        print(doc)
 
 except sqlite3.Error as e:
     print("SQLite error occurred:", e)
