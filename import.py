@@ -10,7 +10,7 @@ try:
     conn = sqlite3.connect('pokemon.sqlite')
 
     cur = conn.cursor()
-    
+
     generalquery = "SELECT name, pokedex_number, hp, attack, defense, speed, sp_attack, sp_defense FROM pokemon ORDER BY pokedex_number"
     typesquery = "SELECT type1, type2 FROM pokemon_types_view WHERE name = ?"
     abilityquery = "SELECT name FROM ability WHERE id IN (SELECT ability_id FROM pokemon_abilities WHERE " \
@@ -44,10 +44,7 @@ try:
             "abilities": abilities
         }
 
-        pokemonColl.insert_one(pokemon)
-
-    for doc in pokemonColl.find():
-        print(doc)
+        pokemonColl.update_one({"pokedex_number": pokedex_number}, {"$set": pokemon}, upsert=True)
 
 except sqlite3.Error as e:
     print("SQLite error occurred:", e)
