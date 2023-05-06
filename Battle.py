@@ -18,6 +18,13 @@ def battle(pokemon1, pokemon2):
         elif pokemon2[stat] > pokemon1[stat]:
             print(pokemon2['name'] + "'s " + stat + " is superior")
 
+    if pokemon1['speed'] > pokemon2['speed']:
+        print(pokemon1['name'] + " attacks " + pokemon2['name'] + " with " + pokemon1.get("abilities")[0])
+        print(pokemon2['name'] + " attacks " + pokemon1['name'] + " with " + pokemon2.get("abilities")[0])
+    else:
+        print(pokemon2['name'] + " attacks " + pokemon1['name'] + " with " + pokemon2.get("abilities")[0])
+        print(pokemon1['name'] + " attacks " + pokemon2['name'] + " with " + pokemon1.get("abilities")[0])
+
     winner = random.randrange(2)
     if winner == 0: print("Battle results: " + pokemon1['name'])
     if winner == 1: print("Battle results: " + pokemon2['name'])
